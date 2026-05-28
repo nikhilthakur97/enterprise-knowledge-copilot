@@ -42,7 +42,13 @@ class ChatResponse(BaseModel):
 class FeedbackRequest(BaseModel):
     message_id: str
     rating: Literal["up", "down"]
-    comment: str | None = None
+    comment: str | None = Field(default=None, max_length=1000)
+    # Optional context the frontend can attach so feedback records are
+    # self-contained for offline evaluation. Server does not store any
+    # chat history keyed by message_id, so without these fields the
+    # feedback would be uncorrelatable.
+    question: str | None = Field(default=None, max_length=4000)
+    answer: str | None = Field(default=None, max_length=8000)
 
 
 class FeedbackResponse(BaseModel):
