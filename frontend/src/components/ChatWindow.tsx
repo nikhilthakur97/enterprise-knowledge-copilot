@@ -8,11 +8,19 @@ interface Props {
   error: string | null;
 }
 
+function prefersReducedMotion(): boolean {
+  if (typeof window === 'undefined' || !window.matchMedia) return false;
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
 export function ChatWindow({ turns, loading, error }: Props) {
   const endRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    endRef.current?.scrollIntoView({
+      behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+      block: 'end',
+    });
   }, [turns.length, loading, error]);
 
   return (
@@ -22,6 +30,7 @@ export function ChatWindow({ turns, loading, error }: Props) {
       aria-live="polite"
       aria-relevant="additions"
       aria-label="Conversation"
+      aria-busy={loading}
     >
       {turns.length === 0 && !loading && !error && (
         <div className="chat-empty">

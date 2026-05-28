@@ -41,7 +41,7 @@
 .chat-empty {
   margin: auto;
   text-align: center;
-  color: #777;
+  color: #5f6368;
   max-width: 480px;
 }
 
@@ -88,7 +88,11 @@
 .bubble-meta {
   font-size: 0.7rem;
   margin-top: 0.45rem;
-  opacity: 0.55;
+  color: #6b7280;
+}
+
+.bubble-user .bubble-meta {
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .sources {
@@ -319,6 +323,13 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .chat-loading span {
+    animation: none;
+    opacity: 0.7;
+  }
+}
+
 .chat-error {
   align-self: stretch;
   background: #fee2e2;
@@ -331,9 +342,28 @@
 
 .chat-input {
   margin-top: 0.75rem;
-  display: flex;
-  gap: 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 0.5rem;
+  row-gap: 0.35rem;
   flex-shrink: 0;
+}
+
+.chat-input-help {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.chat-input-help kbd {
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.72rem;
+  background: #f0f0f0;
+  border: 1px solid #d0d0d0;
+  border-radius: 3px;
+  padding: 0 0.3rem;
+  color: #333;
 }
 
 .chat-input textarea {
