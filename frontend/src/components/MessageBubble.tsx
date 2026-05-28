@@ -1,11 +1,13 @@
+import { FeedbackButtons } from './FeedbackButtons';
 import { Sources } from './Sources';
 import type { ChatTurn } from '../hooks/useChat';
 
 interface Props {
   turn: ChatTurn;
+  question?: string;
 }
 
-export function MessageBubble({ turn }: Props) {
+export function MessageBubble({ turn, question }: Props) {
   const isAssistant = turn.role === 'assistant';
   return (
     <article
@@ -20,6 +22,11 @@ export function MessageBubble({ turn }: Props) {
             Answered in {(turn.latency_ms / 1000).toFixed(1)}s
           </div>
           <Sources sources={turn.sources} />
+          <FeedbackButtons
+            messageId={turn.message_id}
+            question={question ?? ''}
+            answer={turn.content}
+          />
         </>
       )}
     </article>

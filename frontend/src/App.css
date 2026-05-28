@@ -172,6 +172,118 @@
   max-height: 280px;
 }
 
+.feedback {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #555;
+  flex-wrap: wrap;
+}
+
+.feedback-prompt {
+  margin-right: 0.15rem;
+}
+
+.feedback-button {
+  background: transparent;
+  border: 1px solid #c0c0c0;
+  color: #333;
+  padding: 0.15rem 0.6rem;
+  border-radius: 4px;
+  font: inherit;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.feedback-button:hover {
+  background: #f0f0f0;
+  border-color: #888;
+}
+
+.feedback-button:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 1px;
+}
+
+.feedback-thanks {
+  color: #15803d;
+  font-style: italic;
+}
+
+.feedback-error {
+  color: #b91c1c;
+}
+
+.feedback-commenting {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.feedback-commenting textarea {
+  resize: vertical;
+  padding: 0.45rem 0.6rem;
+  font: inherit;
+  font-size: 0.85rem;
+  border: 1px solid #c0c0c0;
+  border-radius: 4px;
+  min-height: 3rem;
+  background: #ffffff;
+  color: inherit;
+}
+
+.feedback-commenting textarea:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 1px;
+  border-color: transparent;
+}
+
+.feedback-actions {
+  display: flex;
+  gap: 0.4rem;
+  justify-content: flex-end;
+}
+
+.feedback-actions button {
+  padding: 0.3rem 0.85rem;
+  font: inherit;
+  font-size: 0.78rem;
+  border-radius: 4px;
+  border: 1px solid #c0c0c0;
+  background: #ffffff;
+  color: #333;
+  cursor: pointer;
+}
+
+.feedback-actions button[type='submit'] {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
+.feedback-actions button[type='submit']:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.feedback-actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
 .chat-loading {
   display: flex;
   gap: 0.3rem;

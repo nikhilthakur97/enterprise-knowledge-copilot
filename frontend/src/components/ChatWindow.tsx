@@ -34,9 +34,14 @@ export function ChatWindow({ turns, loading, error }: Props) {
         </div>
       )}
 
-      {turns.map((turn, i) => (
-        <MessageBubble key={i} turn={turn} />
-      ))}
+      {turns.map((turn, i) => {
+        const prev = i > 0 ? turns[i - 1] : null;
+        const question =
+          turn.role === 'assistant' && prev?.role === 'user'
+            ? prev.content
+            : undefined;
+        return <MessageBubble key={i} turn={turn} question={question} />;
+      })}
 
       {loading && (
         <div className="chat-loading" aria-label="Assistant is thinking">
