@@ -26,6 +26,7 @@ class Source(BaseModel):
     file: str
     snippet: str
     score: float
+    heading: str | None = None
 
 
 class ChatResponse(BaseModel):
