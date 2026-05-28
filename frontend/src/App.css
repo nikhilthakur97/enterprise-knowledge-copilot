@@ -91,6 +91,87 @@
   opacity: 0.55;
 }
 
+.sources {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.sources summary {
+  cursor: pointer;
+  color: #2563eb;
+  font-weight: 500;
+  padding: 0.15rem 0;
+  user-select: none;
+  list-style: revert;
+}
+
+.sources summary:hover {
+  text-decoration: underline;
+}
+
+.sources summary:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+.sources-count {
+  color: #777;
+  font-weight: 400;
+}
+
+.sources-list {
+  list-style: decimal;
+  margin: 0.55rem 0 0;
+  padding-left: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.source-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: baseline;
+  font-size: 0.8rem;
+}
+
+.source-file {
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-weight: 600;
+  color: #1e3a8a;
+}
+
+.source-heading {
+  color: #555;
+}
+
+.source-score {
+  margin-left: auto;
+  background: #e0e7ff;
+  color: #3730a3;
+  padding: 0.1rem 0.45rem;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.source-snippet {
+  margin: 0.3rem 0 0;
+  padding: 0.5rem 0.65rem;
+  background: #f3f4f6;
+  border-radius: 4px;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: #374151;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: auto;
+  max-height: 280px;
+}
+
 .chat-loading {
   display: flex;
   gap: 0.3rem;
