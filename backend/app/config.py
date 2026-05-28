@@ -20,7 +20,7 @@ class Settings(BaseSettings):
     )
 
     gemini_api_key: str = Field(default="", description="Google Gemini API key")
-    gemini_model: str = Field(default="gemini-2.0-flash")
+    gemini_model: str = Field(default="gemini-2.5-flash")
 
     embedding_model: str = Field(
         default="sentence-transformers/all-MiniLM-L6-v2"

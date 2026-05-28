@@ -10,3 +10,6 @@ python-dotenv==1.0.1
 # RAG: embeddings & vector store
 sentence-transformers==3.3.1
 chromadb==0.5.23
+
+# LLM client (Google Gemini)
+google-genai==2.7.0
