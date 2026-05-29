@@ -6,14 +6,21 @@ interface Props {
   turns: ChatTurn[];
   loading: boolean;
   error: string | null;
+  onPickExample: (text: string) => void;
 }
+
+const EXAMPLE_QUESTIONS = [
+  'How many days of annual leave do I get?',
+  'What is the response time for a P0 incident?',
+  'Walk me through the new-hire onboarding process.',
+];
 
 function prefersReducedMotion(): boolean {
   if (typeof window === 'undefined' || !window.matchMedia) return false;
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
-export function ChatWindow({ turns, loading, error }: Props) {
+export function ChatWindow({ turns, loading, error, onPickExample }: Props) {
   const endRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -34,12 +41,25 @@ export function ChatWindow({ turns, loading, error }: Props) {
     >
       {turns.length === 0 && !loading && !error && (
         <div className="chat-empty">
-          <p>Ask me about Lumina&apos;s HR policies.</p>
-          <p className="chat-empty-examples">
-            Try: &ldquo;How many days of annual leave do I get?&rdquo;,
-            &ldquo;What is the response time for a P0 incident?&rdquo;, or
-            &ldquo;Find information about onboarding.&rdquo;
+          <p className="chat-empty-headline">
+            Ask me about Lumina&apos;s HR policies.
           </p>
+          <p className="chat-empty-sub">
+            Answers are grounded in 8 internal policy documents. Pick an
+            example or type your own question below.
+          </p>
+          <div className="chat-empty-chips">
+            {EXAMPLE_QUESTIONS.map((q) => (
+              <button
+                key={q}
+                type="button"
+                className="chat-empty-chip"
+                onClick={() => onPickExample(q)}
+              >
+                {q}
+              </button>
+            ))}
+          </div>
         </div>
       )}
 
@@ -54,9 +74,14 @@ export function ChatWindow({ turns, loading, error }: Props) {
 
       {loading && (
         <div className="chat-loading" aria-label="Assistant is thinking">
-          <span></span>
-          <span></span>
-          <span></span>
+          <div className="assistant-avatar" aria-hidden="true">
+            AI
+          </div>
+          <div className="chat-loading-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
       )}
 

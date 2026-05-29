@@ -9,12 +9,26 @@ function App() {
   return (
     <main className="app">
       <header className="app-header">
-        <h1>Enterprise Knowledge Copilot</h1>
-        <p className="app-subtitle">
-          Internal HR knowledge assistant grounded in Lumina policy documents.
-        </p>
+        <div className="app-mark" aria-hidden="true">
+          EK
+        </div>
+        <div className="app-titles">
+          <h1>Enterprise Knowledge Copilot</h1>
+          <p className="app-subtitle">
+            Grounded answers from Lumina&apos;s HR knowledge base.
+          </p>
+        </div>
+        <span className="app-tag">
+          <span className="app-tag-dot" aria-hidden="true" />
+          Lumina HR
+        </span>
       </header>
-      <ChatWindow turns={turns} loading={loading} error={error} />
+      <ChatWindow
+        turns={turns}
+        loading={loading}
+        error={error}
+        onPickExample={send}
+      />
       <ChatInput onSend={send} disabled={loading} />
     </main>
   );

@@ -24,9 +24,14 @@ export function Sources({ sources }: Props) {
           return (
             <li key={i} className="source">
               <div className="source-header">
+                <span className="source-index" aria-hidden="true">
+                  {i + 1}
+                </span>
                 <span className="source-file">{s.file}</span>
                 {s.heading && (
-                  <span className="source-heading"> :: {s.heading}</span>
+                  <span className="source-heading" title={s.heading}>
+                    {s.heading}
+                  </span>
                 )}
                 <span className="source-score">{pct}% match</span>
               </div>

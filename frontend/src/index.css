@@ -1,3 +1,75 @@
+/* Design tokens. Single source of truth for the visual language.
+ *
+ * Palette: violet-led with a fuchsia gradient accent for marks. Warm,
+ * lavender-tinted neutrals so the purple feels intentional rather than
+ * neon. All colour pairs verified against WCAG-AA contrast on text.
+ */
+:root {
+  /* Surfaces & borders — lavender-tinted neutrals */
+  --color-bg: #fbfaff;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f6f3fb;
+  --color-surface-inset: #ede9f6;
+  --color-border: #e8e4f1;
+  --color-border-strong: #d4ccea;
+
+  /* Text — deep violet-slate */
+  --color-text: #1e1b3b;
+  --color-text-muted: #4c4471;
+  --color-text-faint: #756d96;
+  --color-text-on-accent: #ffffff;
+
+  /* Accent — violet */
+  --color-accent: #7c3aed; /* violet-600 */
+  --color-accent-hover: #6d28d9; /* violet-700 */
+  --color-accent-soft: #f3eefe; /* violet-50 */
+  --color-accent-text: #5b21b6; /* violet-800 */
+
+  /* Status */
+  --color-success: #15803d;
+  --color-error: #b91c1c;
+  --color-error-bg: #fef2f2;
+  --color-error-border: #fecaca;
+
+  /* Signature gradients */
+  --gradient-primary: linear-gradient(
+    135deg,
+    #7c3aed 0%,
+    #a855f7 50%,
+    #d946ef 100%
+  );
+  --gradient-text: linear-gradient(
+    135deg,
+    #5b21b6 0%,
+    #7c3aed 55%,
+    #c026d3 100%
+  );
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto,
+    sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Consolas,
+    monospace;
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-pill: 999px;
+
+  /* Shadows — purple-tinted, not generic black */
+  --shadow-sm: 0 1px 2px rgba(91, 33, 182, 0.05);
+  --shadow-md: 0 4px 14px rgba(91, 33, 182, 0.08),
+    0 1px 3px rgba(91, 33, 182, 0.05);
+  --shadow-lg: 0 12px 40px rgba(91, 33, 182, 0.10),
+    0 2px 6px rgba(91, 33, 182, 0.06);
+  --shadow-glow: 0 0 0 4px rgba(124, 58, 237, 0.15);
+
+  /* Layout */
+  --container-max: 760px;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -11,8 +83,43 @@ body,
 }
 
 body {
-  background: #ffffff;
-  color: #1a1a1a;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--color-bg);
+  /* Two soft radial glows at the corners — Linear/Vercel-style mesh.
+   * Fixed so it doesn't scroll with content. */
+  background-image:
+    radial-gradient(
+      ellipse 80% 60% at 0% 0%,
+      rgba(167, 139, 250, 0.18) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 80% 60% at 100% 100%,
+      rgba(217, 70, 239, 0.12) 0%,
+      transparent 60%
+    );
+  background-attachment: fixed;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Soft purple focus glow instead of hard outline */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-glow);
+  border-radius: var(--radius-sm);
+}
+
+/* Buttons override the global focus ring with their own that respects
+ * their natural border-radius */
+button:focus-visible,
+.chat-empty-chip:focus-visible,
+.feedback-button:focus-visible,
+.sources summary:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-glow);
 }
